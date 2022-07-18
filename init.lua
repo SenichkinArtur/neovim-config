@@ -15,6 +15,7 @@ require('nvim-treesitter.configs').setup {
 }
 require('lsp')
 require('Comment').setup()
+require('nvim-tree-config')
 
 
 vim.cmd('colorscheme onedark')

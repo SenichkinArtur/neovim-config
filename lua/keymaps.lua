@@ -27,6 +27,9 @@ keymap("n", "<C-Down>", ":resize -2<CR>", default_options)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", default_options)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", default_options)
 
+-- Nvimtree
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", default_options)
+
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", default_options)
@@ -34,8 +37,3 @@ keymap("v", ">", ">gv", default_options)
 
 keymap("v", "p", '"_dP', default_options) 
 
-
--- nnoremap <leader>ff <cmd>Telescope find_files<cr>
--- nnoremap <leader>fg <cmd>Telescope live_grep<cr>
--- nnoremap <leader>fb <cmd>Telescope buffers<cr>
--- nnoremap <leader>fh <cmd>Telescope help_tags<cr>

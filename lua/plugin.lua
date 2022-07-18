@@ -18,7 +18,7 @@ Plug 'nvim-telescope/telescope.nvim'        		                  -- plugin for se
 Plug 'neovim/nvim-lspconfig'                                      -- language server protocol
 Plug 'williamboman/nvim-lsp-installer'                            -- 
 Plug 'numToStr/Comment.nvim'                                      -- plugin for commenting code
-
+Plug 'kyazdani42/nvim-tree.lua'                                   -- plugin for project file tree
 
 vim.call('plug#end')
 
