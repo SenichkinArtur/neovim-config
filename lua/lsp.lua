@@ -1,6 +1,9 @@
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+
+local util = require 'util'
 local opts = { noremap=true, silent=true }
+
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -45,9 +48,27 @@ require('lspconfig')['rust_analyzer'].setup{
     flags = lsp_flags,
     -- Server-specific settings...
     settings = {
-      ["rust-analyzer"] = {}
+      ["rust-analyzer"] = {
+        assist = {
+          importEnforceGranularity = true,
+          importPrefix = "crate"
+          },
+        cargo = {
+          allFeatures = true
+          },
+        checkOnSave = {
+          -- default: `cargo check`
+          command = "clippy"
+          }
+        },
+        inlayHints = {
+          lifetimeElisionHints = {
+            enable = true,
+            useParameterNames = true
+          }
+        }
+      }
     }
-}
 
 require("nvim-lsp-installer").setup({
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
@@ -59,3 +80,26 @@ require("nvim-lsp-installer").setup({
         }
     }
 })
+require('lspconfig')['flow'].setup{
+  default_config = {
+    cmd = {"npm", "run", "flow","lsp"};
+    filetypes = {"javascript", "javascriptreact", "javascript.jsx"};
+    root_dir = util.root_pattern(".flowconfig");
+  };
+  docs = {
+    package_json = "https://raw.githubusercontent.com/flowtype/flow-for-vscode/master/package.json";
+    description = [[
+https://flow.org/
+https://github.com/facebook/flow
+See below for how to setup Flow itself.
+https://flow.org/en/docs/install/
+See below for lsp command options.
+```sh
+npm run flow lsp -- --help
+```
+    ]];
+    default_config = {
+      root_dir = [[root_pattern(".flowconfig")]];
+    };
+  };
+};
